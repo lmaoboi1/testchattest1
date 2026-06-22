@@ -727,22 +727,18 @@
             },
             "closing_1": {
                 text: "Thank you for being so open with your answers.",
-                autoNext: "closing_2",
-                typingDelay: 5000 // Short text: 5 seconds
+                autoNext: "closing_2"
             },
             "closing_2": {
                 text: "I can see that you've shared a lot about your current situation, and your responses have given me a clear picture of what you're experiencing.",
-                autoNext: "closing_3",
-                typingDelay: 8000 // Medium-long text: 8 seconds
+                autoNext: "closing_3"
             },
             "closing_3": {
                 text: "To be honest with you, some of the patterns that emerged may be quite concerning and potentially surprising.",
-                autoNext: "closing_4",
-                typingDelay: 6500 // Medium text: 6.5 seconds
+                autoNext: "closing_4"
             },
             "closing_4": {
                 text: "If you're ready to explore this further and receive a more detailed analysis, I’d like to invite you to complete a quick registration. This will allow me to securely save your responses and continue our work together with personalized insights.",
-                typingDelay: 9000, // Longest text: 9 seconds
                 options: [
                     { 
                         label: "Take me to the registration page", 
@@ -1033,11 +1029,7 @@
                     
                     const offset = chatOptionsContainer.offsetHeight;
                     const spacer = document.getElementById('chat-spacer');
-                    if (spacer) {
-                        // Remove transition so height changes instantly, giving us the correct scroll target
-                        spacer.classList.remove('transition-[height]', 'duration-300', 'ease-in-out');
-                        spacer.style.height = `${offset + 24}px`;
-                    }
+                    if (spacer) spacer.style.height = `${offset + 24}px`;
                     scrollToBottom();
                 }, 50);
             } else {
@@ -1052,11 +1044,7 @@
                 setTimeout(() => {
                     const offset = chatOptionsContainer.offsetHeight;
                     const spacer = document.getElementById('chat-spacer');
-                    if (spacer) {
-                        // Remove transition so height changes instantly, giving us the correct scroll target
-                        spacer.classList.remove('transition-[height]', 'duration-300', 'ease-in-out');
-                        spacer.style.height = `${offset + 24}px`;
-                    }
+                    if (spacer) spacer.style.height = `${offset + 24}px`;
                     scrollToBottom();
                 }, 50);
             }
@@ -1065,11 +1053,7 @@
         function hideOptions() {
             chatOptionsContainer.classList.add('translate-y-full', 'opacity-0');
             const spacer = document.getElementById('chat-spacer');
-            if (spacer) {
-                // Add transition back so it shrinks smoothly as the menu slides down
-                spacer.classList.add('transition-[height]', 'duration-300', 'ease-in-out');
-                spacer.style.height = '24px';
-            }
+            if (spacer) spacer.style.height = '24px';
             setTimeout(() => {
                 chatOptionsEl.innerHTML = '';
             }, 300);
@@ -1162,9 +1146,7 @@
             } else {
                 // For text: Show typing immediately
                 const typingId = showTypingIndicator();
-                
-                // Use custom delay if provided, otherwise default to fast 1-1.8s
-                const typingDelay = node.typingDelay || (Math.random() * 800 + 1000); 
+                const typingDelay = Math.random() * 800 + 1000; 
 
                 setTimeout(() => {
                     executeNext(typingId);
